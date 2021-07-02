@@ -27,7 +27,7 @@ public class GhostController : MonoBehaviour
 
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
-		if (hit.collider.tag.Equals("Wall")) 
+		if (hit.collider.CompareTag("Wall")) 
 			CollideWithWall();
 	}
 
