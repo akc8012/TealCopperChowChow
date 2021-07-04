@@ -22473,6 +22473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3455966751194518667, guid: c1b40266fdfe4874faa8e4660a39a651, type: 3}
+      propertyPath: RaycastDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3452987216240808395, guid: c1b40266fdfe4874faa8e4660a39a651, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c1b40266fdfe4874faa8e4660a39a651, type: 3}
