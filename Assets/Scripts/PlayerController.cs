@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
 		CharacterController = GetComponent<CharacterController>();
 	}
 
+	public void SetPosition(Vector3 position)
+	{
+		CharacterController.enabled = false;
+		transform.position = position;
+		CharacterController.enabled = true;
+	}
+
     // Update is called once per frame
     void Update()
 	{
