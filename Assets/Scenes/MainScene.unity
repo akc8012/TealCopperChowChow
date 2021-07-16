@@ -18561,6 +18561,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 5
+  Pink: {fileID: 2100000, guid: a2b047558fed7524bb71c7cd467cb9b1, type: 2}
+  Blue: {fileID: 2100000, guid: 699381f9e5d79e6199142e9f4d271692, type: 2}
+  White: {fileID: 2100000, guid: 1d75d9ed19d52704fa10fd610500b7c6, type: 2}
 --- !u!143 &1019891389
 CharacterController:
   m_ObjectHideFlags: 0

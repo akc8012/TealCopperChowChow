@@ -77,6 +77,14 @@ public class PlayerController : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Ghost"))
-			Destroy(gameObject);
+		{
+			if (other.GetComponent<GhostController>().State == GhostState.Pursue)
+				Destroy(gameObject);
+			else
+			{
+				Destroy(other.gameObject);
+				GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(200);
+			}
+		}
 	}
 }

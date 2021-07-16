@@ -1,22 +1,69 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+public enum GhostState
+{
+	Pursue,
+	Flee
+}
 
 public class GhostController : MonoBehaviour
 {
 	[SerializeField]
 	private float MoveSpeed = 8;
+	[SerializeField]
+	private Material Pink;
+	[SerializeField]
+	private Material Blue;
+
+	[SerializeField]
+	private Material White;
+
+	public GhostState State { get; private set; } = GhostState.Pursue;
 
 	private Vector3 Direction;
-	
+	private Renderer Renderer;
+
 	private CharacterController CharacterController;
+
+	public void SetState(GhostState state)
+	{
+		State = state;
+		Renderer.material = Blue;
+
+		StopCoroutine(nameof(FleeRoutine));
+		StartCoroutine(nameof(FleeRoutine));
+	}
+
+	private IEnumerator FleeRoutine()
+	{
+		yield return new WaitForSeconds(6.5f);
 	
-    // Start is called before the first frame update
+		Renderer.material = White;
+		yield return new WaitForSeconds(.3f);
+		
+		Renderer.material = Blue;
+		yield return new WaitForSeconds(.3f);
+		
+		Renderer.material = White;
+		yield return new WaitForSeconds(.3f);
+		
+		Renderer.material = Blue;
+		yield return new WaitForSeconds(.3f);
+		
+		Renderer.material = White;
+		yield return new WaitForSeconds(.3f);
+
+		State = GhostState.Pursue;
+		Renderer.material = Pink;
+	}
+
+	// Start is called before the first frame update
 	void Start()
 	{
 		Direction = new Vector3(0, 0, MoveSpeed);
 		CharacterController = GetComponent<CharacterController>();
+		Renderer = GetComponent<Renderer>();
 	}
 
     // Update is called once per frame
