@@ -16134,6 +16134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LifeCount: 3
+  LifeManTop: {fileID: 1001564942}
+  LifeManBottom: {fileID: 1071246871}
 --- !u!1 &840654424
 GameObject:
   m_ObjectHideFlags: 0
@@ -18337,7 +18339,7 @@ GameObject:
   - component: {fileID: 1001564944}
   - component: {fileID: 1001564943}
   m_Layer: 0
-  m_Name: LifeMan
+  m_Name: LifeManTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20333,7 +20335,7 @@ GameObject:
   - component: {fileID: 1071246873}
   - component: {fileID: 1071246872}
   m_Layer: 0
-  m_Name: LifeMan (1)
+  m_Name: LifeManBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
