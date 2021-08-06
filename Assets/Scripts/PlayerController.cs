@@ -87,14 +87,13 @@ public class PlayerController : MonoBehaviour
 		{
 			if (other.GetComponent<GhostController>().State == GhostState.Pursue)
 			{
-				GameObject.Find("LifeManager").GetComponent<LifeManager>().RemoveLife();
 				Pause();
 				//TODO for all ghosts
 				var ghostController = other.gameObject.GetComponent<GhostController>();
 				ghostController.Pause();
 
-				StartCoroutine(Respawn(ghostController));
-
+				if (GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife())
+					StartCoroutine(Respawn(ghostController));
 			}
 			else
 			{

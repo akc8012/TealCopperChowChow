@@ -1,12 +1,14 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LifeManager : MonoBehaviour
 {
-	public int LifeCount = 3;
+	private int LifeCount = 3;
 	[SerializeField] private GameObject LifeManTop;
 	[SerializeField] private GameObject LifeManBottom;
 	
-	public void RemoveLife()
+	public bool TryRemoveLife()
 	{
 		LifeCount--;
 
@@ -16,6 +18,15 @@ public class LifeManager : MonoBehaviour
 		if (LifeCount == 1)
 			LifeManTop.SetActive(false);
 		
-		// todo: kill everything on 0
+		if (LifeCount == 0)
+			StartCoroutine(nameof(ResetScene));
+
+		return LifeCount > 0;
+	}
+
+	private IEnumerator ResetScene()
+	{
+		yield return new WaitForSeconds(4);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 }
