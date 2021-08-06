@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -15,9 +16,15 @@ public class PlayerController : MonoBehaviour
 	private bool AllowedToMoveLeft = true;
 	private bool AllowedToMoveRight = true;
 
+	private Vector3 StartPosition;
+	private Quaternion StartRotation;
+
 	// Start is called before the first frame update
 	void Start()
 	{
+		StartPosition = transform.position;
+		StartRotation = transform.rotation;
+		
 		CharacterController = GetComponent<CharacterController>();
 	}
 
@@ -79,12 +86,41 @@ public class PlayerController : MonoBehaviour
 		if (other.CompareTag("Ghost"))
 		{
 			if (other.GetComponent<GhostController>().State == GhostState.Pursue)
-				Destroy(gameObject);
+			{
+				GameObject.Find("LifeManager").GetComponent<LifeManager>().RemoveLife();
+				Pause();
+				//TODO for all ghosts
+				var ghostController = other.gameObject.GetComponent<GhostController>();
+				ghostController.Pause();
+
+				StartCoroutine(Respawn(ghostController));
+
+			}
 			else
 			{
 				Destroy(other.gameObject);
 				GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(200);
 			}
 		}
+	}
+
+	private void Pause()
+	{
+		enabled = false;
+		CharacterController.enabled = false;
+	}
+
+	private IEnumerator Respawn(GhostController ghostController)
+	{
+		yield return new WaitForSeconds(2);
+
+		transform.position = StartPosition;
+		transform.rotation = StartRotation;
+		Direction = Vector3.left;
+
+		CharacterController.enabled = true;
+		enabled = true;
+
+		ghostController.Respawn();
 	}
 }

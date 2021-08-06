@@ -26,6 +26,9 @@ public class GhostController : MonoBehaviour
 
 	private CharacterController CharacterController;
 
+	private Vector3 StartPosition;
+	private Quaternion StartRotation;
+
 	public void SetState(GhostState state)
 	{
 		State = state;
@@ -61,9 +64,12 @@ public class GhostController : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		Direction = new Vector3(0, 0, MoveSpeed);
+		Direction = Vector3.forward * MoveSpeed;
 		CharacterController = GetComponent<CharacterController>();
 		Renderer = GetComponent<Renderer>();
+
+		StartPosition = transform.position;
+		StartRotation = transform.rotation;
 	}
 
     // Update is called once per frame
@@ -100,5 +106,22 @@ public class GhostController : MonoBehaviour
 			Direction.x = 0;
 			Direction.z = -MoveSpeed;
 		}
+	}
+
+	public void Pause()
+	{
+		CharacterController.enabled = false;
+		enabled = false;
+	}
+
+	public void Respawn()
+	{
+		transform.position = StartPosition;
+		transform.rotation = StartRotation;
+		
+		Direction = Vector3.forward * MoveSpeed;
+		
+		CharacterController.enabled = true;
+		enabled = true;
 	}
 }
