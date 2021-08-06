@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LifeManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class LifeManager : MonoBehaviour
 
 	private IEnumerator ResetScene()
 	{
+		GameObject.Find("GameOver").GetComponent<Text>().enabled = true;
+		
 		yield return new WaitForSeconds(4);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
