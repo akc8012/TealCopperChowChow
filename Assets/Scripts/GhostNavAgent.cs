@@ -4,15 +4,16 @@ using UnityEngine.AI;
 public class GhostNavAgent : MonoBehaviour
 { 
 	[SerializeField] Transform Goal;
-	private NavMeshAgent Agent;
+	private NavMeshAgent NavMeshAgent;
 
 	void Start()
 	{
-		Agent = GetComponent<NavMeshAgent>();
+		NavMeshAgent = GetComponent<NavMeshAgent>();
 	}
 
 	void Update()
 	{
-		Agent.destination = Goal.position;
+		if (NavMeshAgent.enabled)
+			NavMeshAgent.destination = Goal.position;
 	}
 }

@@ -13634,9 +13634,10 @@ GameObject:
   - component: {fileID: 646626810}
   - component: {fileID: 646626809}
   - component: {fileID: 646626808}
+  - component: {fileID: 646626813}
   m_Layer: 0
   m_Name: NavAgentGhost
-  m_TagString: Untagged
+  m_TagString: Ghost
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13698,7 +13699,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646626806}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -13723,7 +13724,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e47864291cf7a254394b236326117440, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13753,6 +13754,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646626806}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &646626813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646626806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620aa4b56b15a26409ebdb59aec9ef37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultMaterial: {fileID: 2100000, guid: e47864291cf7a254394b236326117440, type: 2}
+  Blue: {fileID: 2100000, guid: 699381f9e5d79e6199142e9f4d271692, type: 2}
+  White: {fileID: 2100000, guid: 1d75d9ed19d52704fa10fd610500b7c6, type: 2}
 --- !u!1001 &651423441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18921,8 +18937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620aa4b56b15a26409ebdb59aec9ef37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 5
-  Pink: {fileID: 2100000, guid: a2b047558fed7524bb71c7cd467cb9b1, type: 2}
+  DefaultMaterial: {fileID: 2100000, guid: a2b047558fed7524bb71c7cd467cb9b1, type: 2}
   Blue: {fileID: 2100000, guid: 699381f9e5d79e6199142e9f4d271692, type: 2}
   White: {fileID: 2100000, guid: 1d75d9ed19d52704fa10fd610500b7c6, type: 2}
 --- !u!143 &1019891389

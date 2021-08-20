@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public enum GhostState
 {
@@ -10,24 +12,28 @@ public enum GhostState
 public class GhostController : MonoBehaviour
 {
 	[SerializeField]
-	private float MoveSpeed = 8;
-	[SerializeField]
-	private Material Pink;
+	private Material DefaultMaterial;
 	[SerializeField]
 	private Material Blue;
-
 	[SerializeField]
 	private Material White;
 
 	public GhostState State { get; private set; } = GhostState.Pursue;
 
-	private Vector3 Direction;
 	private Renderer Renderer;
-
-	private CharacterController CharacterController;
+	private NavMeshAgent NavMeshAgent;
 
 	private Vector3 StartPosition;
 	private Quaternion StartRotation;
+
+	void Start()
+	{
+		Renderer = GetComponent<Renderer>();
+		NavMeshAgent = GetComponent<NavMeshAgent>();
+
+		StartPosition = transform.position;
+		StartRotation = transform.rotation;
+	}
 
 	public void SetState(GhostState state)
 	{
@@ -58,59 +64,12 @@ public class GhostController : MonoBehaviour
 		yield return new WaitForSeconds(.3f);
 
 		State = GhostState.Pursue;
-		Renderer.material = Pink;
-	}
-
-	// Start is called before the first frame update
-	void Start()
-	{
-		Direction = Vector3.forward * MoveSpeed;
-		CharacterController = GetComponent<CharacterController>();
-		Renderer = GetComponent<Renderer>();
-
-		StartPosition = transform.position;
-		StartRotation = transform.rotation;
-	}
-
-    // Update is called once per frame
-    void Update()
-	{
-		CharacterController.Move(Direction * Time.deltaTime);
-    }
-
-	private void OnControllerColliderHit(ControllerColliderHit hit)
-	{
-		if (hit.collider.CompareTag("Wall")) 
-			CollideWithWall();
-	}
-
-	private void CollideWithWall()
-	{
-		if (Direction.z < 0)
-		{
-			Direction.x = -MoveSpeed;
-			Direction.z = 0;
-		}
-		else if (Direction.z > 0)
-		{
-			Direction.x = MoveSpeed;
-			Direction.z = 0;
-		}
-		else if (Direction.x < 0)
-		{
-			Direction.x = 0;
-			Direction.z = MoveSpeed;
-		}
-		else if (Direction.x > 0)
-		{
-			Direction.x = 0;
-			Direction.z = -MoveSpeed;
-		}
+		Renderer.material = DefaultMaterial;
 	}
 
 	public void Pause()
 	{
-		CharacterController.enabled = false;
+		NavMeshAgent.enabled = false;
 		enabled = false;
 	}
 
@@ -118,10 +77,8 @@ public class GhostController : MonoBehaviour
 	{
 		transform.position = StartPosition;
 		transform.rotation = StartRotation;
-		
-		Direction = Vector3.forward * MoveSpeed;
-		
-		CharacterController.enabled = true;
+
+		NavMeshAgent.enabled = true;
 		enabled = true;
 	}
 }
