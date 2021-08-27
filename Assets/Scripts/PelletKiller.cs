@@ -17,7 +17,7 @@ public class PelletKiller : MonoBehaviour
 			if (gameObject.name.Contains("PowerPellet"))
 			{
 				foreach (GameObject ghost in GameObject.FindGameObjectsWithTag("Ghost"))
-					ghost.GetComponent<GhostController>().SetState(GhostState.Flee);
+					ghost.GetComponent<GhostController>().StartFleeState();
 			}
 
 			Destroy(gameObject);

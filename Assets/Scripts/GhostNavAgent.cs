@@ -1,19 +1,18 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class GhostNavAgent : MonoBehaviour
-{ 
-	[SerializeField] Transform Goal;
+{
+	public Transform Goal;
 	private NavMeshAgent NavMeshAgent;
 
-	void Start()
-	{
-		NavMeshAgent = GetComponent<NavMeshAgent>();
-	}
+	void Awake() => NavMeshAgent = GetComponent<NavMeshAgent>();
 
-	void Update()
-	{
-		if (NavMeshAgent.enabled)
-			NavMeshAgent.destination = Goal.position;
-	}
+	void Update() => NavMeshAgent.destination = Goal.position;
+
+	private void OnEnable() => NavMeshAgent.enabled = true;
+
+	private void OnDisable() => NavMeshAgent.enabled = false;
 }
+
