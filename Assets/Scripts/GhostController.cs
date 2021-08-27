@@ -70,7 +70,7 @@ public class GhostController : MonoBehaviour
 		State = GhostState.Pursue;
 		Renderer.material = DefaultMaterial;
 
-		GhostNavAgent.Goal = GameObject.FindWithTag("Player").transform;
+		GhostNavAgent.ResetGoal();
 	}
 
 	public void Pause()

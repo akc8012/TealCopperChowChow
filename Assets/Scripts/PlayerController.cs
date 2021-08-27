@@ -47,16 +47,19 @@ public class PlayerController : MonoBehaviour
 		if (AllowedToMoveRight && Input.GetAxisRaw("Horizontal") > 0)
 			Direction = Vector3.right;
 
+		if (Direction != Vector3.zero)
+			transform.forward = Direction;
+
 		CharacterController.Move(Direction * MoveSpeed * Time.deltaTime);
 	}
 
 	private void FixedUpdate()
 	{
-		var verticalPositions = new Vector3[] { transform.position, transform.position + new Vector3(0.5f, 0, 0), transform.position - new Vector3(0.5f, 0, 0) };
+		var verticalPositions = new[] { transform.position, transform.position + new Vector3(0.5f, 0, 0), transform.position - new Vector3(0.5f, 0, 0) };
 		AllowedToMoveForward = AllowedToMoveInDirection(Vector3.forward, verticalPositions);
 		AllowedToMoveBack = AllowedToMoveInDirection(Vector3.back, verticalPositions);
 
-		var horizontalPositions = new Vector3[] { transform.position, transform.position + new Vector3(0, 0, 0.5f), transform.position - new Vector3(0, 0, 0.5f) };
+		var horizontalPositions = new[] { transform.position, transform.position + new Vector3(0, 0, 0.5f), transform.position - new Vector3(0, 0, 0.5f) };
 		AllowedToMoveLeft = AllowedToMoveInDirection(Vector3.left, horizontalPositions);
 		AllowedToMoveRight = AllowedToMoveInDirection(Vector3.right, horizontalPositions);
 	}

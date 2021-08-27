@@ -6,8 +6,15 @@ public class GhostNavAgent : MonoBehaviour
 {
 	public Transform Goal;
 	private NavMeshAgent NavMeshAgent;
+	private Transform StartGoal;
 
-	void Awake() => NavMeshAgent = GetComponent<NavMeshAgent>();
+	void Awake()
+	{
+		NavMeshAgent = GetComponent<NavMeshAgent>();
+		StartGoal = Goal;
+	}
+
+	public void ResetGoal() => Goal = StartGoal;
 
 	void Update() => NavMeshAgent.destination = Goal.position;
 
@@ -15,4 +22,3 @@ public class GhostNavAgent : MonoBehaviour
 
 	private void OnDisable() => NavMeshAgent.enabled = false;
 }
-
