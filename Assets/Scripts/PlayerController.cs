@@ -90,24 +90,26 @@ public class PlayerController : MonoBehaviour
 		if (other.CompareTag("Ghost"))
 		{
 			if (other.GetComponent<GhostController>().State == GhostState.Pursue)
-			{
-				Pause();
-				bool loseLife = GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife();
-
-				foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
-				{
-					ghostController.Pause();
-
-					if (loseLife)
-						StartCoroutine(Respawn(ghostController));
-				}
-				
-			}
+				Kill();
 			else
 			{
 				Destroy(other.gameObject);
 				GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(200);
 			}
+		}
+	}
+
+	private void Kill()
+	{
+		Pause();
+		bool loseLife = GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife();
+
+		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
+		{
+			ghostController.Pause();
+
+			if (loseLife)
+				StartCoroutine(Respawn(ghostController));
 		}
 	}
 
