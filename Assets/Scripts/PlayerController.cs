@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -91,12 +92,16 @@ public class PlayerController : MonoBehaviour
 			if (other.GetComponent<GhostController>().State == GhostState.Pursue)
 			{
 				Pause();
-				//TODO for all ghosts
-				var ghostController = other.gameObject.GetComponent<GhostController>();
-				ghostController.Pause();
+				bool loseLife = GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife();
 
-				if (GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife())
-					StartCoroutine(Respawn(ghostController));
+				foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
+				{
+					ghostController.Pause();
+
+					if (loseLife)
+						StartCoroutine(Respawn(ghostController));
+				}
+				
 			}
 			else
 			{
