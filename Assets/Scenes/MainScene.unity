@@ -2576,7 +2576,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 921152731091715296, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.03
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 921152731091715296, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38550,6 +38550,10 @@ PrefabInstance:
     - target: {fileID: 921152731091715297, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_Name
       value: Blinky
+      objectReference: {fileID: 0}
+    - target: {fileID: 921152731091715297, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 921152731091715311, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: Goal
