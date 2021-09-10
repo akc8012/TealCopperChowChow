@@ -4,24 +4,24 @@ using Random = UnityEngine.Random;
 
 public class InkyPointRandomizer : MonoBehaviour
 {
-	[SerializeField] private float MinZBound;
-	[SerializeField] private float MaxZBound;
+	[SerializeField] protected float MinZBound;
+	[SerializeField] protected float MaxZBound;
 
-	[SerializeField] private float XBound;
+	[SerializeField] protected float MinXBound;
+	[SerializeField] protected float MaxXBound;
 	[SerializeField] private float WaitTime;
 
-	private Transform Inky;
+	protected Transform Target;
 
-	private void Start()
+	protected virtual void Start()
 	{
-		Inky = GameObject.Find("Inky").transform;
-
+		Target = GameObject.Find("Inky").transform;
 		StartCoroutine(nameof(Randomize));
 	}
 
-	private void Update()
+	protected virtual void Update()
 	{
-		if (Vector3.Distance(transform.position, Inky.position) < 1)
+		if (Vector3.Distance(transform.position, Target.position) < 1)
 		{
 			StopCoroutine(nameof(Randomize));
 			StartCoroutine(nameof(Randomize));
@@ -32,7 +32,7 @@ public class InkyPointRandomizer : MonoBehaviour
 	{
 		while (true)
 		{
-			transform.position = new Vector3(Random.Range(-XBound, XBound), transform.position.y,Random.Range(MinZBound, MaxZBound));
+			transform.position = new Vector3(Random.Range(MinXBound, MaxXBound), transform.position.y, Random.Range(MinZBound, MaxZBound));
 			yield return new WaitForSeconds(WaitTime);
 		}
 	}
