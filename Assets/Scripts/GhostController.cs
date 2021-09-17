@@ -84,7 +84,6 @@ public class GhostController : MonoBehaviour
 		transform.position = StartPosition;
 		transform.rotation = StartRotation;
 
-		GhostNavAgent.enabled = true;
 		enabled = true;
 	}
 }

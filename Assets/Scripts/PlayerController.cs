@@ -102,24 +102,23 @@ public class PlayerController : MonoBehaviour
 	private void Kill()
 	{
 		Pause();
-		bool loseLife = GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife();
-
+		
 		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
-		{
 			ghostController.Pause();
-
-			if (loseLife)
-				StartCoroutine(Respawn(ghostController));
-		}
+		
+		bool loseLife = GameObject.Find("LifeManager").GetComponent<LifeManager>().TryRemoveLife();
+		if (loseLife)
+			StartCoroutine(Respawn());
 	}
 
 	private void Pause()
 	{
 		enabled = false;
 		CharacterController.enabled = false;
+		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().StopTimer();
 	}
 
-	private IEnumerator Respawn(GhostController ghostController)
+	private IEnumerator Respawn()
 	{
 		yield return new WaitForSeconds(2);
 
@@ -130,6 +129,9 @@ public class PlayerController : MonoBehaviour
 		CharacterController.enabled = true;
 		enabled = true;
 
-		ghostController.Respawn();
+		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
+			ghostController.Respawn();
+		
+		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
 	}
 }

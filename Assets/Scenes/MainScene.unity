@@ -2677,6 +2677,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: a2b047558fed7524bb71c7cd467cb9b1, type: 2}
     - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_AutoBraking
       value: 0
       objectReference: {fileID: 0}
@@ -2684,6 +2688,10 @@ PrefabInstance:
       propertyPath: Goal
       value: 
       objectReference: {fileID: 938812891}
+    - target: {fileID: 921152731091715311, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
 --- !u!4 &138459345 stripped
@@ -15396,6 +15404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772479318}
+  - component: {fileID: 772479319}
   m_Layer: 0
   m_Name: Ghosts
   m_TagString: Untagged
@@ -15421,6 +15430,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &772479319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772479317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91365f2d0706c144b87aa42bb1da55e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &775628391
 Mesh:
   m_ObjectHideFlags: 0
@@ -35945,6 +35966,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e5e470e516729b84db28ec34f4b10704, type: 2}
     - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_AutoBraking
       value: 0
       objectReference: {fileID: 0}
@@ -35952,6 +35977,10 @@ PrefabInstance:
       propertyPath: Goal
       value: 
       objectReference: {fileID: 39144051}
+    - target: {fileID: 921152731091715311, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
 --- !u!1 &1918929118
@@ -37112,6 +37141,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 6a50de1aee042e944b794c78f6684809, type: 2}
     - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_AutoBraking
       value: 0
       objectReference: {fileID: 0}
@@ -37119,6 +37152,10 @@ PrefabInstance:
       propertyPath: Goal
       value: 
       objectReference: {fileID: 64938682}
+    - target: {fileID: 921152731091715311, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
 --- !u!1 &2001231158
@@ -38692,6 +38729,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 921152731091715306, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 921152731091715310, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
       propertyPath: m_AutoBraking
       value: 0
@@ -38700,6 +38745,10 @@ PrefabInstance:
       propertyPath: Goal
       value: 
       objectReference: {fileID: 239887204}
+    - target: {fileID: 921152731091715311, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 901e81bb7d4db4443aadface2460cc4c, type: 3}
 --- !u!1001 &1946955488603381383
