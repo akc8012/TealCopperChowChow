@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
 			StartCoroutine(Respawn());
 	}
 
-	private void Pause()
+	public void Pause()
 	{
 		enabled = false;
 		CharacterController.enabled = false;
@@ -123,16 +123,21 @@ public class PlayerController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2);
 
+		Unpause();
+
+		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
+			ghostController.Respawn();
+		
+		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
+	}
+	
+	public void Unpause()
+	{
 		transform.position = StartPosition;
 		transform.rotation = StartRotation;
 		Direction = Vector3.left;
 
 		CharacterController.enabled = true;
 		enabled = true;
-
-		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
-			ghostController.Respawn();
-		
-		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
 	}
 }

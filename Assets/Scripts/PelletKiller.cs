@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PelletKiller : MonoBehaviour
@@ -20,7 +17,8 @@ public class PelletKiller : MonoBehaviour
 					ghost.GetComponent<GhostController>().StartFleeState();
 			}
 
-			Destroy(gameObject);
+			gameObject.SetActive(false);
+			GameObject.Find("Pellets").GetComponent<PelletPurveyor>().PelletEaten();
 		}
 	}
 }
