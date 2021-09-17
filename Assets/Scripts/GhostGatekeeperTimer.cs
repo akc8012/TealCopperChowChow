@@ -10,7 +10,6 @@ public class GhostGatekeeperTimer : MonoBehaviour
     void Start()
 	{
 		Ghosts = GetComponentsInChildren<GhostNavAgent>();
-		ResetTimer();
 	}
 
 	private IEnumerator GatekeeperTimer()

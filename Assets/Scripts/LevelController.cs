@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-	public void NextLevel()
+	private void Start()
 	{
-		StartCoroutine(nameof(NextLevelRoutine));
+		NextLevel();
 	}
 
-	private IEnumerator NextLevelRoutine()
+	public void NextLevel() => StartCoroutine(nameof(StartLevelCoroutine));
+
+	private IEnumerator StartLevelCoroutine()
+	{
+		PauseCharacters();
+
+		yield return new WaitForSeconds(5);
+		
+		UnpauseCharacters();
+	}
+
+	private void PauseCharacters()
 	{
 		GameObject.FindWithTag("Player").GetComponent<PlayerController>().Pause();
 		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
 			ghostController.Pause();
-		
-		yield return new WaitForSeconds(2);
-		
+	}
+
+	private static void UnpauseCharacters()
+	{
 		GameObject.FindWithTag("Player").GetComponent<PlayerController>().Unpause();
 		GameObject.Find("Pellets").GetComponent<PelletPurveyor>().ResetPellets();
-		
+
 		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
 			ghostController.Respawn();
-		
+
 		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
 	}
 }

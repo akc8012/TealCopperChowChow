@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 	private Quaternion StartRotation;
 
 	// Start is called before the first frame update
-	void Start()
+	void Awake()
 	{
 		StartPosition = transform.position;
 		StartRotation = transform.rotation;
