@@ -31,8 +31,6 @@ public class GhostGatekeeperTimer : MonoBehaviour
 	{
 		StopTimer();
 		StartCoroutine(nameof(GatekeeperTimer));
-		
-		print("Reset timer");
 	}
 	
 	public void StopTimer() => StopCoroutine(nameof(GatekeeperTimer));

@@ -24,7 +24,7 @@ public class GhostController : MonoBehaviour
 	private Vector3 StartPosition;
 	private Quaternion StartRotation;
 
-	void Start()
+	void Awake()
 	{
 		Renderer = GetComponent<Renderer>();
 		GhostNavAgent = GetComponent<GhostNavAgent>();
@@ -67,10 +67,19 @@ public class GhostController : MonoBehaviour
 
 	private void EndFleeState()
 	{
+		StopCoroutine(nameof(FleeRoutine));
+
 		State = GhostState.Pursue;
 		Renderer.material = DefaultMaterial;
 
 		GhostNavAgent.ResetGoal();
+	}
+	
+	public void ResetSelf()
+	{
+		Pause();
+		Respawn();
+		StartCoroutine(nameof(UnpauseAfterTimerRoutine));
 	}
 
 	public void Pause()
@@ -85,5 +94,12 @@ public class GhostController : MonoBehaviour
 		transform.rotation = StartRotation;
 
 		enabled = true;
+		EndFleeState();
+	}
+
+	private IEnumerator UnpauseAfterTimerRoutine()
+	{
+		yield return new WaitForSeconds(3);
+		GhostNavAgent.enabled = true;
 	}
 }

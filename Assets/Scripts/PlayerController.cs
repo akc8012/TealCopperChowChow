@@ -89,11 +89,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if (other.CompareTag("Ghost"))
 		{
-			if (other.GetComponent<GhostController>().State == GhostState.Pursue)
+			var ghostController = other.GetComponent<GhostController>();
+			if (ghostController.State == GhostState.Pursue)
 				Kill();
 			else
 			{
-				Destroy(other.gameObject);
+				ghostController.ResetSelf();
 				GameObject.Find("ScoreKeeper").GetComponent<ScoreKeeper>().AddPoints(200);
 			}
 		}
