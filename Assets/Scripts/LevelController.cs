@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class LevelController : MonoBehaviour
 		PauseCharacters();
 
 		yield return new WaitForSeconds(5);
-		
+		GameObject.Find("ReadyToDie").GetComponent<Text>().enabled = true;
+		yield return new WaitForSeconds(5);
+		//TODO reset pieces without starting them
 		UnpauseCharacters();
 	}
 
@@ -36,5 +39,6 @@ public class LevelController : MonoBehaviour
 			ghostController.Respawn();
 
 		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
+		GameObject.Find("ReadyToDie").GetComponent<Text>().enabled = false;
 	}
 }
