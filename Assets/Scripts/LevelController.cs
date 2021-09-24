@@ -5,9 +5,22 @@ using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour
 {
+	private Text ReadyText;
+
 	private void Start()
 	{
-		NextLevel();
+		ReadyText = GameObject.Find("ReadyToDie").GetComponent<Text>();
+		StartCoroutine(nameof(StartGameCoroutine));
+	}
+
+	private IEnumerator StartGameCoroutine()
+	{
+		PauseCharacters();
+		ReadyText.enabled = true;
+		
+		yield return new WaitForSeconds(5);
+		ReadyText.enabled = false;
+		UnpauseCharacters();
 	}
 
 	public void NextLevel() => StartCoroutine(nameof(StartLevelCoroutine));
@@ -17,7 +30,7 @@ public class LevelController : MonoBehaviour
 		PauseCharacters();
 
 		yield return new WaitForSeconds(5);
-		GameObject.Find("ReadyToDie").GetComponent<Text>().enabled = true;
+		ReadyText.enabled = true;
 		yield return new WaitForSeconds(5);
 		//TODO reset pieces without starting them
 		UnpauseCharacters();
@@ -30,7 +43,7 @@ public class LevelController : MonoBehaviour
 			ghostController.Pause();
 	}
 
-	private static void UnpauseCharacters()
+	private void UnpauseCharacters()
 	{
 		GameObject.FindWithTag("Player").GetComponent<PlayerController>().Unpause();
 		GameObject.Find("Pellets").GetComponent<PelletPurveyor>().ResetPellets();
@@ -39,6 +52,6 @@ public class LevelController : MonoBehaviour
 			ghostController.Respawn();
 
 		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
-		GameObject.Find("ReadyToDie").GetComponent<Text>().enabled = false;
+		ReadyText.enabled = false;
 	}
 }

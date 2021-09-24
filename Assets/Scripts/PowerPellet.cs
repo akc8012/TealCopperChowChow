@@ -6,7 +6,7 @@ public class PowerPellet : MonoBehaviour
 {
 	private Renderer Renderer;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
 	{
 		Renderer = GetComponent<Renderer>();
 		StartCoroutine(nameof(BlinkRoutine));
