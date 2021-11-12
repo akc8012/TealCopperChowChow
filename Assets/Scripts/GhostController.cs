@@ -90,8 +90,7 @@ public class GhostController : MonoBehaviour
 
 	public void Respawn()
 	{
-		transform.position = StartPosition;
-		transform.rotation = StartRotation;
+		ResetPosition();
 
 		enabled = true;
 		EndFleeState();
@@ -101,5 +100,11 @@ public class GhostController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(3);
 		GhostNavAgent.enabled = true;
+	}
+
+	public void ResetPosition()
+	{
+		transform.position = StartPosition;
+		transform.rotation = StartRotation;
 	}
 }

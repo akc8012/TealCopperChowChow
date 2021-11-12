@@ -27,12 +27,23 @@ public class LevelController : MonoBehaviour
 
 	private IEnumerator StartLevelCoroutine()
 	{
+		// characters pause
 		PauseCharacters();
 
 		yield return new WaitForSeconds(5);
 		ReadyText.enabled = true;
+		// ReadyText shows, AND character positions reset, ghost timers reset
+		GameObject.FindWithTag("Player").GetComponent<PlayerController>().ResetPosition();
+		
+		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
+			ghostController.ResetPosition();
+		
+		GameObject.Find("Pellets").GetComponent<PelletPurveyor>().ResetPellets();
+		
 		yield return new WaitForSeconds(5);
-		//TODO reset pieces without starting them
+		
+		// unpause everyone, hide ReadyText 
+		ReadyText.enabled = false;
 		UnpauseCharacters();
 	}
 
@@ -46,12 +57,10 @@ public class LevelController : MonoBehaviour
 	private void UnpauseCharacters()
 	{
 		GameObject.FindWithTag("Player").GetComponent<PlayerController>().Unpause();
-		GameObject.Find("Pellets").GetComponent<PelletPurveyor>().ResetPellets();
 
 		foreach (var ghostController in GameObject.FindGameObjectsWithTag("Ghost").Select(g => g.GetComponent<GhostController>()))
 			ghostController.Respawn();
 
 		GameObject.Find("Ghosts").GetComponent<GhostGatekeeperTimer>().ResetTimer();
-		ReadyText.enabled = false;
 	}
 }

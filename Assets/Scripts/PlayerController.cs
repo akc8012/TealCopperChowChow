@@ -133,11 +133,16 @@ public class PlayerController : MonoBehaviour
 	
 	public void Unpause()
 	{
-		transform.position = StartPosition;
-		transform.rotation = StartRotation;
-		Direction = Vector3.left;
+		ResetPosition();
 
 		CharacterController.enabled = true;
 		enabled = true;
+	}
+
+	public void ResetPosition()
+	{
+		transform.position = StartPosition;
+		transform.rotation = StartRotation;
+		Direction = Vector3.left;
 	}
 }
